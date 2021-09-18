@@ -13,6 +13,11 @@ class Api < ApplicationRecord
         resp = Net::HTTP.get(uri)
         photos = JSON.parse(resp)
         data = photos["photos"]
+        # get more data if insufficient for frontend display
+        if data.count < 15
+            data += self.fetch_images
+        end
+        data
     end
 
 end
