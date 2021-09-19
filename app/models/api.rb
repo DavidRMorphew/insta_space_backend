@@ -1,6 +1,7 @@
 class Api < ApplicationRecord
     @@base_url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/'
     @@rover_array = ["curiosity", "spirit", "opportunity"]
+    @@rover_max_sol = {"curiosity" => 3241, "spirit" => 2208, "opportunity" => 5111}
     @@camera_names = {
         "FHAZ" => "Front Hazard Avoidance Camera",
         "RHAZ" => "Rear Hazard Avoidance Camera",
@@ -14,14 +15,17 @@ class Api < ApplicationRecord
     }
 
     def self.fetch_images(earth_date = nil)
+        # randomize rover
+        rover = @@rover_array[rand(2)]
+        max_sol = @@rover_max_sol[rover]
+        
         if earth_date
             date_query = "earth_date=#{earth_date}"
         else
-            date_query = "sol=#{rand(5100)}"
+            date_query = "sol=#{rand(max_sol)}"
         end
 
-        # randomize rover
-        rover = @@rover_array[rand(2)]
+
         # Set data parameters to actual dates for opportunity rover in earth_date
         url = "#{@@base_url}#{rover}/photos?#{date_query}&api_key=#{ENV["NASA_API_KEY"]}"
         uri = URI(url)
