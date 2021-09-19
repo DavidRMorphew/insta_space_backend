@@ -33,7 +33,7 @@ class Api < ApplicationRecord
         if data.count < 15
             data += self.fetch_images
         end
-        data
+        data.shuffle
     end
 
     def self.format_data(data, rover)
