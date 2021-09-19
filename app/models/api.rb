@@ -44,10 +44,14 @@ class Api < ApplicationRecord
         data.map do |image_data|
             if image_data["camera"] && image_data["earth_date"]
                 camera = @@camera_names[image_data["camera"]["name"]]
-                date = Date.parse(image_data["earth_date"])
-                { image_url: image_data["img_src"], title: "#{rover.titleize} Rover——#{camera}——#{image_data["id"]}", date_of_capture: date }
+                title = "#{rover.titleize} Rover——#{camera}——#{image_data["id"]}"
+                if saved_image = Image.find_by(title: title)
+                    saved_image
+                else
+                    date = Date.parse(image_data["earth_date"])
+                    { image_url: image_data["img_src"], title: title, date_of_capture: date }
+                end
             end
         end
     end
-
 end
