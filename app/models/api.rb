@@ -17,7 +17,17 @@ class Api < ApplicationRecord
         if data.count < 15
             data += self.fetch_images
         end
-        data
+        self.format_data(data).compact
+    end
+
+    def self.format_data(data)
+        data.map do |image_data|
+            {
+                image_url: image_data["img_src"],
+                title: "#{image_data["rover"]["name"]}—#{image_data["camera"]["name"]}—#{image_data["id"]}",
+                date_of_capture: Date.parse(image_data["earth_date"])
+            }
+        end
     end
 
 end
