@@ -2,12 +2,12 @@ class ApplicationController < ActionController::API
     before_action :authorized
     # before_action :cors_set_access_control_headers
 
-    def cors_preflight_check
-        if request.method == 'OPTIONS'
-            cors_set_access_control_headers
-            render text: '', content_type: 'text/plain'
-        end
-    end
+    # def cors_preflight_check
+    #     if request.method == 'OPTIONS'
+    #         cors_set_access_control_headers
+    #         render text: '', content_type: 'text/plain'
+    #     end
+    # end
 
     def encode_token(payload)
         JWT.encode(payload, ENV["SESSION_SECRET"])
