@@ -1,8 +1,16 @@
 class ApplicationController < ActionController::API
     before_action :authorized
+    # before_action :cors_set_access_control_headers
+
+    def cors_preflight_check
+        if request.method == 'OPTIONS'
+            cors_set_access_control_headers
+            render text: '', content_type: 'text/plain'
+        end
+    end
 
     def encode_token(payload)
-        JWT.encode(payload, ENV["SESSION_SECRET"], ‘HS256’)
+        JWT.encode(payload, ENV["SESSION_SECRET"])
     end
 
     def decoded_token
@@ -12,6 +20,7 @@ class ApplicationController < ActionController::API
                 JWT.decode(token, ENV["SESSION_SECRET"], true, algorithm: 'HS256')
             rescue JWT::DecodeError
                 nil
+            end
         end
     end
 
@@ -20,7 +29,9 @@ class ApplicationController < ActionController::API
     end
 
     def current_user
-        @user ||= User.find_by(id: user_id) if user_id
+        if user_id
+            @user ||= User.find_by(id: user_id)
+        end
     end
 
     def logged_in?
@@ -30,4 +41,13 @@ class ApplicationController < ActionController::API
     def authorized
         render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
     end
+
+    # protected
+
+    # def cors_set_access_control_headers
+    #     response.headers['Access-Control-Allow-Origin'] = '*'
+    #     response.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, PATCH, DELETE, OPTIONS'
+    #     response.headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization, Token, Auth-Token, Email, X-User-Token, X-User-Email'
+    #     response.headers['Access-Control-Max-Age'] = '1728000'
+    # end
 end

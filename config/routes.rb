@@ -10,4 +10,6 @@ Rails.application.routes.draw do
       get '/profile', to: 'users#profile'
     end
   end
+
+  # match '*all', controller: 'application', action: 'cors_preflight_check', via: [:options]
 end
