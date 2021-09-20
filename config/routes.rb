@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
-  resources :replies
-  resources :comments
-  resources :likes
-  resources :images
-  resources :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    namespace :v1 do
+      resources :replies
+      resources :comments
+      resources :likes
+      resources :images
+      resources :users
+      post '/login', to: 'auth#create'
+      get '/profile', to: 'users#profile'
+      get '/logged_in', to: 'auth#logged_in'
+      delete '/logout', to: 'auth#destroy'
+    end
+  end
+
+  # match '*all', controller: 'application', action: 'cors_preflight_check', via: [:options]
 end
