@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Api::V1::UsersController < ApplicationController
     wrap_parameters :user, include: [:username, :email, :password]
 
     def create
