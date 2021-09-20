@@ -12,11 +12,20 @@ class Api::V1::AuthController < ApplicationController
         end
     end
 
-    def auto_login
+    def logged_in
         if current_user
             render json: current_user
         else
             render json: { error: "Login Required"}
+        end
+    end
+
+    def destroy
+        if current_user
+            current_user = nil
+            render json: { message: "Successfully Logged Out" }, status: :accepted
+        else
+            render json: { error: "Logout Failed" }, status: :not_acceptable
         end
     end
 

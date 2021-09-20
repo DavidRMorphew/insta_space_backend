@@ -8,7 +8,8 @@ Rails.application.routes.draw do
       resources :users
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
-      get '/auto_login', to: 'auth#auto_login'
+      get '/logged_in', to: 'auth#logged_in'
+      delete '/logout', to: 'auth#destroy'
     end
   end
 
