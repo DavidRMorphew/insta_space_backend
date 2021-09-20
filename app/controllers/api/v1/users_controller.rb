@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
         @user = User.new(user_params)
         binding.pry
         if @user.save
-            render json: { user: @user }, status: :created
+            render json: { user: UserSerializer.new(@user) }, status: :created
         else
             render json: { error: @user.errors.full_messages }, status: :not_acceptable
         end
