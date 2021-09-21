@@ -1,6 +1,6 @@
 class Api::V1::AuthController < ApplicationController
     wrap_parameters :user, include: [:email, :password]
-    skip_before_action :authorized, only: [:create]
+    skip_before_action :authorized, only: [:create, :logged_in]
     
     def create
         @user = User.find_by(email: user_params[:email])
