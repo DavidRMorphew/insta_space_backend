@@ -7,7 +7,6 @@ Rails.application.routes.draw do
       resources :images
       resources :users
       post '/login', to: 'auth#create'
-      get '/profile', to: 'users#profile'
       get '/logged_in', to: 'auth#logged_in'
       delete '/logout', to: 'auth#destroy'
     end
