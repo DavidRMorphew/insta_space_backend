@@ -1,6 +1,6 @@
 class Api::V1::AuthController < ApplicationController
     wrap_parameters :user, include: [:email, :password]
-    skip_before_action :authorized, only: [:create]
+    skip_before_action :authorized, only: [:create, :logged_in]
     
     def create
         @user = User.find_by(email: user_params[:email])
@@ -22,7 +22,8 @@ class Api::V1::AuthController < ApplicationController
 
     def destroy
         if current_user
-            current_user = nil
+            # Current.user = nil
+            Current.reset
             render json: { message: "Successfully Logged Out" }, status: :accepted
         else
             render json: { error: "Logout Failed" }, status: :not_acceptable
