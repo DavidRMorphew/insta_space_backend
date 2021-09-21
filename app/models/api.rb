@@ -61,8 +61,7 @@ class Api < ApplicationRecord
                         title: title, 
                         date_of_capture: date, 
                         like_count: 0, 
-                        comment_count: 0,
-                        current_user_like: false
+                        comment_count: 0
                     }
                 end
             end
