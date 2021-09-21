@@ -55,13 +55,14 @@ class Api < ApplicationRecord
                     #     comment_count: saved_image.comment_count
                     # }
                 else
-                    date = Date.parse(image_data["earth_date"])
+                    date = image_data["earth_date"]
                     { 
                         image_url: image_data["img_src"], 
                         title: title, 
                         date_of_capture: date, 
                         like_count: 0, 
-                        comment_count: 0 
+                        comment_count: 0,
+                        current_user_like: false
                     }
                 end
             end

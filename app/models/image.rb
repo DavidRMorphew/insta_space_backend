@@ -13,6 +13,6 @@ class Image < ApplicationRecord
     end
 
     def current_user_like
-        self.likers.include(current_user) ? true : false
+        self.likers.include(Current.user) ? true : false
     end
 end
