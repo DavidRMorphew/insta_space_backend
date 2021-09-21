@@ -11,4 +11,8 @@ class Image < ApplicationRecord
     def comment_count
         self.comments.count
     end
+
+    def current_user_like
+        self.likers.include(current_user) ? true : false
+    end
 end
