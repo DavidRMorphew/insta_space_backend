@@ -44,7 +44,7 @@ class Api < ApplicationRecord
         data.map do |image_data|
             if image_data["camera"] && image_data["earth_date"]
                 camera = @@camera_names[image_data["camera"]["name"]]
-                title = "#{rover.titleize} Rover——#{camera}——#{image_data["id"]}"
+                title = "#{rover.titleize} Rover—#{camera}—#{image_data["id"]}"
                 if saved_image = Image.find_by(title: title)
                     ImageSerializer.new(saved_image)
                     # { 
