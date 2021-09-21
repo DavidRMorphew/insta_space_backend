@@ -12,6 +12,12 @@ class Api::V1::UsersController < ApplicationController
         end
     end
 
+    def show
+        likes_count = current_user.liked_images.count
+        comments_count = current_user.commented_images.count
+        render json: { user: UserSerializer.new(current_user), likesCount: likes_count, commentsCount: comments_count }
+    end
+
     private
 
     def user_params
