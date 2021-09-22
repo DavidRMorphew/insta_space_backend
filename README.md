@@ -6,6 +6,22 @@
 
 Welcome to Insta-Space! You can browse images from Nasa's space exploration (currently Mars Rovers Pictures) and add where you can like images you find appealing.
 
+## Installation
+
+First, fork this repository.
+
+Then clone:
+```
+git@github.com:DavidRMorphew/insta_space_backend.git
+```
+
+Run
+```
+bundle install
+```
+
+Then fork, clone, and install the [React Frontend](https://github.com/DavidRMorphew/insta_space_frontend).
+
 ## Building for Scale
 
 Nasa Images are "relayed" through this API to the React Frontend without being persisted. Because the NASA Apis require Api tokens, and using Api tokens with Rails is generally more secure than when used with React, images are fetched from the NASA Api, formatted, and then sent with relevant information to the React Frontend without being persisted. Only if liked or commented on will an image be persisted to the database.
@@ -27,4 +43,4 @@ Please feel free to add and update tests where appropriate.
 Contributors are expected to adhere to the [Contributor Covenant](https://www.contributor-covenant.org/) code of conduct.
 
 ## License
-The app is open source under the terms of the MIT License.
+The app is open source under the terms of the [MIT License](https://github.com/DavidRMorphew/insta_space_backend/blob/main/LICENSE.TXT).
