@@ -12,7 +12,7 @@ First, fork this repository.
 
 Then clone:
 ```
-git@github.com:DavidRMorphew/insta_space_backend.git
+git clone git@github.com:DavidRMorphew/insta_space_backend.git
 ```
 
 Run
