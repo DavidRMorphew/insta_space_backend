@@ -1,24 +1,30 @@
-# README
+# Insta-Space
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![Nebula Image](https://lh3.googleusercontent.com/YGJ77qN9KiwctZgfqV8Bf3hNo0rZvcFaPKDTkvtS6kVbtwyCS80Pm6dpXzJCCLZE1Q)
 
-Things you may want to cover:
+## Purpose and Usage
 
-* Ruby version
+Welcome to Insta-Space! You can browse images from Nasa's space exploration (currently Mars Rovers Pictures) and add where you can like images you find appealing.
 
-* System dependencies
+## Building for Scale
 
-* Configuration
+Nasa Images are "relayed" through this API to the React Frontend without being persisted. Because the NASA Apis require Api tokens, and using Api tokens with Rails is generally more secure than when used with React, images are fetched from the NASA Api, formatted, and then sent with relevant information to the React Frontend without being persisted. Only if liked or commented on will an image be persisted to the database.
 
-* Database creation
+## Features Built for the Future
 
-* Database initialization
+Currently, this Api persists users and provides authentication using JSON Web Tokens and persisted user information and web tokens in localStorage in the React Frontend.
 
-* How to run the test suite
+User authentication is intended for future functionality with persisted user likes, comments, and responses to comments. For the future plans to add comments, replies, and persist user likes, see the  [drawio diagram](/Users/Morpheus299800/Projects/coding_challenges/my-insta-space-split/insta-space-backend/insta_space_backend/database_table.png).
 
-* Services (job queues, cache servers, search engines, etc.)
+This app is also intended to fetch images from other NASA Apis in future versions.
 
-* Deployment instructions
+## Contributing
 
-* ...
+Pull requests are welcome. If you want to make major changes, please open an issue first to discuss the proposed change.
+
+Please feel free to add and update tests where appropriate.
+
+Contributors are expected to adhere to the [Contributor Covenant](https://www.contributor-covenant.org/) code of conduct.
+
+## License
+The app is open source under the terms of the MIT License.
