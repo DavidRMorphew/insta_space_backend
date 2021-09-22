@@ -47,13 +47,6 @@ class Api < ApplicationRecord
                 title = "#{rover.titleize} Rover—#{camera}—#{image_data["id"]}"
                 if saved_image = Image.find_by(title: title)
                     ImageSerializer.new(saved_image)
-                    # { 
-                    #     image_url: saved_image.image_url, 
-                    #     title: saved_image.title, 
-                    #     date_of_capture: saved_image.date_of_capture, 
-                    #     like_count: saved_image.like_count,
-                    #     comment_count: saved_image.comment_count
-                    # }
                 else
                     date = image_data["earth_date"]
                     { 
@@ -61,8 +54,7 @@ class Api < ApplicationRecord
                         title: title, 
                         date_of_capture: date, 
                         like_count: 0, 
-                        comment_count: 0,
-                        current_user_like: false
+                        comment_count: 0
                     }
                 end
             end
