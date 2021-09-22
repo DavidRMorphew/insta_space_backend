@@ -4,8 +4,8 @@ Rails.application.routes.draw do
       resources :replies
       resources :comments
       resources :likes
-      resources :images
-      resources :users
+      resources :images, only: [:index]
+      resources :users, only: [:create, :show]
       post '/login', to: 'auth#create'
       get '/logged_in', to: 'auth#logged_in'
       delete '/logout', to: 'auth#destroy'
