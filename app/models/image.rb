@@ -11,8 +11,4 @@ class Image < ApplicationRecord
     def comment_count
         self.comments.count
     end
-
-    # def current_user_like
-    #     self.likers.find_by(id: Current.user.id) ? true : false
-    # end
 end
