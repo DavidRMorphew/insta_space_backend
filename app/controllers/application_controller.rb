@@ -2,14 +2,14 @@ class ApplicationController < ActionController::API
     before_action :authorized
 
     def encode_token(payload)
-        JWT.encode(payload, ENV["SESSION_SECRET"])
+        JWT.encode(payload, Rails.application.secrets.secret_key_base)
     end
 
     def decoded_token
         if request.headers['Authorization']
             token = request.headers['Authorization'].split(' ')[1]
             begin
-                JWT.decode(token, ENV["SESSION_SECRET"], true, algorithm: 'HS256')
+                JWT.decode(token, Rails.application.secrets.secret_key_base, true, algorithm: 'HS256')
             rescue JWT::DecodeError
                 nil
             end
