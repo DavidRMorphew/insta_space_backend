@@ -22,8 +22,7 @@ class Api::V1::AuthController < ApplicationController
 
     def destroy
         if current_user
-            # Current.user = nil
-            Current.reset
+            current_user = nil
             render json: { message: "Successfully Logged Out" }, status: :accepted
         else
             render json: { error: "Logout Failed" }, status: :not_acceptable
