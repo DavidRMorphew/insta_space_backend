@@ -22,7 +22,7 @@ class ApplicationController < ActionController::API
 
     def current_user
         if user_id
-            Current.user ||= User.find_by(id: user_id)
+            current_user = User.find_by(id: user_id)
         end
     end
 
