@@ -16,7 +16,7 @@ class Api < ApplicationRecord
     }
 
     def self.fetch_images(earth_date = nil)
-        image_fetch_type = 1 #rand(2)
+        image_fetch_type = rand(2)
 
         if image_fetch_type == 0
             # randomize rover
@@ -87,11 +87,10 @@ class Api < ApplicationRecord
     end
 
     def self.format_apod_data(data)
-        # binding.pry
         data.map do |image_data|
             date = image_data["date"]
             title = image_data["title"]
-            image_url = image_data["hdurl"] ? image_data["hdurl"] : image_data["url"]
+            image_url = image_data["hdurl"] ? image_data["hdurl"] : data["url"]
             if saved_image = Image.find_by(title: title)
                 ImageSerializer.new(saved_image)
             else
