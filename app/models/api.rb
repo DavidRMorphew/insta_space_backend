@@ -16,10 +16,7 @@ class Api < ApplicationRecord
     }
 
     def self.fetch_images(earth_date = nil)
-        image_fetch_type = rand(2)
-
-        if image_fetch_type == 0
-            # randomize rover
+        if rand(2) == 0
             rover = @@rover_array[rand(3)]
             max_sol = @@rover_max_sol[rover]
             data = self.fetch_rover_images(earth_date = nil, rover, max_sol)
@@ -39,8 +36,6 @@ class Api < ApplicationRecord
         else
             date_query = "sol=#{rand(max_sol)}"
         end
-
-        # Set data parameters to actual dates for opportunity rover in earth_date
         url = "#{@@base_url}#{rover}/photos?#{date_query}&api_key=#{ENV["NASA_API_KEY"]}"
         uri = URI(url)
         resp = Net::HTTP.get(uri)
