@@ -90,7 +90,7 @@ class Api < ApplicationRecord
         data.map do |image_data|
             date = image_data["date"]
             title = image_data["title"]
-            image_url = image_data["hdurl"] ? image_data["hdurl"] : data["url"]
+            image_url = image_data["hdurl"] ? image_data["hdurl"] : image_data["url"]
             if saved_image = Image.find_by(title: title)
                 ImageSerializer.new(saved_image)
             else
