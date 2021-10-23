@@ -87,6 +87,22 @@ class Api < ApplicationRecord
     end
 
     def self.format_apod_data(data)
-        puts data
+        # binding.pry
+        data.map do |image_data|
+            date = image_data["date"]
+            title = image_data["title"]
+            image_url = image_data["hdurl"] ? image_data["hdurl"] : image_data["url"]
+            if saved_image = Image.find_by(title: title)
+                ImageSerializer.new(saved_image)
+            else
+                { 
+                    image_url: image_url, 
+                    title: title, 
+                    date_of_capture: date, 
+                    like_count: 0, 
+                    comment_count: 0
+                }
+            end
+        end
     end
 end
