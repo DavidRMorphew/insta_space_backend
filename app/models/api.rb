@@ -29,7 +29,7 @@ class Api < ApplicationRecord
             data = self.format_apod_data(photo_data)
         end
         
-        if data.count < 15
+        if data.count < 50
             data += self.fetch_images
         end
         data.shuffle
