@@ -15,6 +15,22 @@ class Api < ApplicationRecord
     }
 
     def self.fetch_images(earth_date = nil)
+        
+        if true
+            # randomize rover
+            rover = @@rover_array[rand(2)]
+            max_sol = @@rover_max_sol[rover]
+            data = self.fetch_rover_images(earth_date = nil, rover, max_sol)
+        end
+        
+        data = self.format_data(data, rover).compact
+        if data.count < 15
+            data += self.fetch_images
+        end
+        data.shuffle
+    end
+
+    def self.fetch_rover_images(earth_date = nil, rover, max_sol)
         # randomize rover
         rover = @@rover_array[rand(2)]
         max_sol = @@rover_max_sol[rover]
@@ -32,12 +48,6 @@ class Api < ApplicationRecord
         resp = Net::HTTP.get(uri)
         photos = JSON.parse(resp)
         data = photos["photos"]
-        # get more data if insufficient for frontend display
-        data = self.format_data(data, rover).compact
-        if data.count < 15
-            data += self.fetch_images
-        end
-        data.shuffle
     end
 
     def self.format_data(data, rover)
