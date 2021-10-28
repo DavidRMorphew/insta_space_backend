@@ -4,7 +4,7 @@
 
 ## Purpose and Usage
 
-Welcome to Insta-Space! You can browse images from Nasa's space exploration (currently Mars Rovers Pictures) and add where you can like images you find appealing.
+Welcome to Insta-Space! You can browse images from Nasa's space exploration (currently Mars Rovers Pictures and Astronomy Picture of the Day photos) and like images you find appealing.
 
 ## Installation
 
@@ -24,7 +24,7 @@ Then fork, clone, and install the [React Frontend](https://github.com/DavidRMorp
 
 ## Building for Scale
 
-Nasa Images are "relayed" through this API to the React Frontend without being persisted. Because the NASA Apis require Api tokens, and using Api tokens with Rails is generally more secure than when used with React, images are fetched from the NASA Api, formatted, and then sent with relevant information to the React Frontend without being persisted. Only if liked or commented on will an image be persisted to the database.
+Nasa Images are "relayed" through this API to the React Frontend without being persisted. Because the NASA Apis require Api tokens, and using Api tokens with Rails is generally more secure than when used with React, images are fetched from the NASA Api, formatted, and then sent with relevant information to the React Frontend without being persisted. You can read more about my choice to relay information [here](https://davidrmorphew.medium.com/relaying-data-through-a-backend-api-6e7baf39619e). Only if liked or commented on will an image be persisted to the database.
 
 ## Features Built for the Future
 
@@ -33,6 +33,10 @@ Currently, this Api persists users and provides authentication using JSON Web To
 User authentication is intended for future functionality with persisted user likes, comments, and responses to comments. For the future plans to add comments, replies, and persist user likes, see the  [drawio diagram](/Users/Morpheus299800/Projects/coding_challenges/my-insta-space-split/insta-space-backend/insta_space_backend/database_table.png).
 
 This app is also intended to fetch images from other NASA Apis in future versions.
+
+## Proof of Concept
+
+A proof of concept version of this app already exists in deployment [here](https://insta-space.netlify.app/), but many planned featues have not yet been implemented.
 
 ## Contributing
 
