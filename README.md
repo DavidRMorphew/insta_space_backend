@@ -36,7 +36,7 @@ This app is also intended to fetch images from other NASA Apis in future version
 
 ## Proof of Concept
 
-A proof of concept version of this app already exists in deployment here, but many planned featues have not yet been implemented.
+A proof of concept version of this app already exists in deployment [here](https://insta-space.netlify.app/), but many planned featues have not yet been implemented.
 
 ## Contributing
 
