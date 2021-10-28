@@ -24,7 +24,7 @@ Then fork, clone, and install the [React Frontend](https://github.com/DavidRMorp
 
 ## Building for Scale
 
-Nasa Images are "relayed" through this API to the React Frontend without being persisted. Because the NASA Apis require Api tokens, and using Api tokens with Rails is generally more secure than when used with React, images are fetched from the NASA Api, formatted, and then sent with relevant information to the React Frontend without being persisted. Only if liked or commented on will an image be persisted to the database.
+Nasa Images are "relayed" through this API to the React Frontend without being persisted. Because the NASA Apis require Api tokens, and using Api tokens with Rails is generally more secure than when used with React, images are fetched from the NASA Api, formatted, and then sent with relevant information to the React Frontend without being persisted. You can read more about my choice to relay information [here](https://davidrmorphew.medium.com/relaying-data-through-a-backend-api-6e7baf39619e). Only if liked or commented on will an image be persisted to the database.
 
 ## Features Built for the Future
 
