@@ -34,6 +34,10 @@ User authentication is intended for future functionality with persisted user lik
 
 This app is also intended to fetch images from other NASA Apis in future versions.
 
+## Proof of Concept
+
+A proof of concept version of this app already exists in deployment here, but many planned featues have not yet been implemented.
+
 ## Contributing
 
 Pull requests are welcome. If you want to make major changes, please open an issue first to discuss the proposed change.
