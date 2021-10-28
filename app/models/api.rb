@@ -16,17 +16,12 @@ class Api < ApplicationRecord
     }
 
     def self.fetch_images(earth_date = nil)
-        image_fetch_type = rand(2)
-
-        if image_fetch_type == 0
-            # randomize rover
+        if rand(2) == 0
             rover = @@rover_array[rand(3)]
             max_sol = @@rover_max_sol[rover]
-            photo_data = self.fetch_rover_images(earth_date = nil, rover, max_sol)
-            data = self.format_rover_data(photo_data, rover).compact
+            data = self.fetch_rover_images(earth_date = nil, rover, max_sol)
         else
-            photo_data = self.fetch_apod_images(earth_date = nil)
-            data = self.format_apod_data(photo_data)
+            data = self.fetch_apod_images(earth_date = nil)
         end
         
         if data.count < 50
@@ -35,23 +30,18 @@ class Api < ApplicationRecord
         data.shuffle
     end
 
-    def self.fetch_rover_images(earth_date, rover, max_sol)
-        # randomize rover
-        rover = @@rover_array[rand(2)]
-        max_sol = @@rover_max_sol[rover]
-        
+    def self.fetch_rover_images(earth_date, rover, max_sol)    
         if earth_date
             date_query = "earth_date=#{earth_date}"
         else
             date_query = "sol=#{rand(max_sol)}"
         end
-
-        # Set data parameters to actual dates for opportunity rover in earth_date
         url = "#{@@base_url}#{rover}/photos?#{date_query}&api_key=#{ENV["NASA_API_KEY"]}"
         uri = URI(url)
         resp = Net::HTTP.get(uri)
         photos = JSON.parse(resp)
         data = photos["photos"]
+        self.format_rover_data(data, rover).compact
     end
 
     def self.fetch_apod_images(earth_date)
@@ -63,6 +53,7 @@ class Api < ApplicationRecord
         uri = URI(url)
         resp = Net::HTTP.get(uri)
         data = JSON.parse(resp)
+        self.format_apod_data(data)
     end
 
     def self.format_rover_data(data, rover)
